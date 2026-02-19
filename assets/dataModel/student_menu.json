@@ -1,0 +1,73 @@
+[
+  {
+    "menuID": "9",
+    "menuName": "Home",
+    "indexOrder": "1",
+    "image": "https://www.trizinnovation.com/icon2/Home.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "0",
+    "isRedirect": "1",
+    "redirectScreen": "1",
+    "isBrowser": "0",
+    "subMenuList": []
+  },
+  {
+    "menuID": "301",
+    "menuName": "My Profile",
+    "indexOrder": "2",
+    "image": "https://www.trizinnovation.com/icon2/My Profile.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "0",
+    "isRedirect": "1",
+    "redirectScreen": "ProfileScreen",
+    "isBrowser": "0"
+  },
+  {
+    "menuID": "10",
+    "menuName": "Settings",
+    "indexOrder": "2",
+    "image": "https://www.trizinnovation.com/icon2/My Profile.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "0",
+    "isRedirect": "1",
+    "redirectScreen": "settings",
+    "isBrowser": "0"
+  },
+  {
+    "menuID": "6",
+    "menuName": "Rate",
+    "image": "https://www.trizinnovation.com/icon/Rate.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "http://student.intstu.com/terms",
+    "isRedirect": "1",
+    "redirectScreen": "Rate",
+    "isBrowser": "0",
+    "subMenuList": []
+  },
+  {
+    "menuID": "7",
+    "menuName": "Share",
+    "menuNameGujarati": "ગોપનીયતા નીતિ",
+    "indexOrder": "13",
+    "image": "https://www.trizinnovation.com/icon/Share.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "http://student.intstu.com/privacy",
+    "isRedirect": "1",
+    "redirectScreen": "Share",
+    "isBrowser": "0",
+    "subMenuList": []
+  },
+  {
+    "menuID": "8",
+    "menuName": "Logout",
+    "menuNameGujarati": "લૉગ આઉટ",
+    "indexOrder": "15",
+    "image": "https://www.trizinnovation.com/icon/Logout.png",
+    "logo": "https://trizinnovation.com/wp-content/uploads/2017/11/cropped-triz-final-logo.png",
+    "url": "0",
+    "isRedirect": "1",
+    "redirectScreen": "100",
+    "isBrowser": "0",
+    "subMenuList": []
+  }
+]

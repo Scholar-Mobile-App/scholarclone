@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "707815671469",
+    "project_id": "scholar-clone",
+    "storage_bucket": "scholar-clone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:707815671469:android:9a3a0b8db0344019e8e824",
+        "android_client_info": {
+          "package_name": "com.triz.scholar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "707815671469-3i6q5tmek4o23em3mmv2vvg7e9ra07an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8huJn5U6vwpb2VzxLqA-q6E1ocx3yXaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "707815671469-3i6q5tmek4o23em3mmv2vvg7e9ra07an.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

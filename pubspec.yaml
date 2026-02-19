@@ -1,0 +1,94 @@
+name: scholar_clone
+description: A new Flutter project.
+
+publish_to: "none"
+
+#ios
+version: 15.21.2+2
+#android
+#version: 1.0.56+56
+
+environment:
+  sdk: ">=2.19.2 <3.0.0"
+
+dependencies:
+  cached_network_image: ^3.2.3
+  carousel_slider: ^5.0.0
+  chewie: ^1.7.0
+  cupertino_icons: ^1.0.2
+  device_info_plus: ^11.0.0
+  dio: ^5.2.1+1
+  dotted_border: ^3.0.1
+  expandable: ^5.0.1
+  file_picker: ^10.1.9
+  firebase_analytics:
+  firebase_core:
+  firebase_crashlytics:
+  firebase_messaging:
+  flutter:
+    sdk: flutter
+  flutter_linkify: ^6.0.0
+  flutter_local_notifications: ^19.2.1
+  flutter_polygon: ^0.3.0+2
+  flutter_staggered_grid_view: ^0.7.0
+  flutter_styled_toast: ^2.1.3
+  flutter_svg: ^2.0.7
+  flutter_widget_from_html_core: ^0.16.0
+  fluttertoast: ^8.2.12
+  get: ^4.6.5
+  get_storage: ^2.1.1
+  http: ^1.2.2
+  image_cropper: ^9.1.0
+  image_picker: ^1.0.0
+  intl: ^0.20.2
+  # launch_review: ^3.0.1
+  # open_file_plus: ^3.4.1
+  open_filex: ^4.7.0
+  #open_file_safe: ^3.2.1
+  package_info_plus: ^8.0.2
+  path: ^1.8.3
+  path_provider: ^2.0.15
+  permission_handler: ^12.0.0+1
+  photo_view: ^0.15.0
+  pin_code_text_field: ^1.8.0
+  share_plus: ^11.0.0
+  shimmer: ^3.0.0
+  sn_progress_dialog: ^1.1.3
+  store_redirect: ^2.0.4
+  table_calendar: ^3.0.9
+  url_launcher: ^6.1.11
+  video_player: ^2.7.0
+  video_thumbnail: ^0.5.3
+  webview_flutter: ^4.2.2
+  percent_indicator: ^4.2.5
+  geolocator: ^14.0.0
+  geocoding: ^3.0.0
+  month_picker_dialog: ^6.0.3
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/dataModel/
+    - assets/svgs/
+
+  fonts:
+    - family: GoogleSans-Regular
+      fonts:
+        - asset: assets/fonts/GoogleSans-Regular.ttf
+        - asset: assets/fonts/GoogleSans-Medium.ttf
+        - asset: assets/fonts/GoogleSans-Bold.ttf
+
+    - family: Josefin Sans
+      fonts:
+        - asset: assets/fonts/josefin_sans/JosefinSans-Bold.ttf
+        - asset: assets/fonts/josefin_sans/JosefinSans-Medium.ttf
+        - asset: assets/fonts/josefin_sans/JosefinSans-Regular.ttf
+        - asset: assets/fonts/josefin_sans/JosefinSans-SemiBold.ttf
