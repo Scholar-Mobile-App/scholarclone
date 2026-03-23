@@ -5,6 +5,37 @@ LeaveModel leaveModelFromJson(String str) =>
 
 String leaveModelToJson(LeaveModel data) => json.encode(data.toJson());
 
+/// Helper method to parse date in format "dd-MM-yyyy HH:mm:ss"
+DateTime? _parseDate(String? dateString) {
+  if (dateString == null || dateString.isEmpty) return null;
+  try {
+    // Try parsing as ISO 8601 first
+    return DateTime.parse(dateString);
+  } catch (_) {
+    try {
+      // Try parsing as "dd-MM-yyyy HH:mm:ss"
+      final parts = dateString.split(' ');
+      if (parts.length == 2) {
+        final dateParts = parts[0].split('-');
+        final timeParts = parts[1].split(':');
+        if (dateParts.length == 3 && timeParts.length >= 3) {
+          return DateTime(
+            int.parse(dateParts[2]), // year
+            int.parse(dateParts[1]), // month
+            int.parse(dateParts[0]), // day
+            int.parse(timeParts[0]), // hour
+            int.parse(timeParts[1]), // minute
+            int.parse(timeParts[2]), // second
+          );
+        }
+      }
+      return null;
+    } catch (_) {
+      return null;
+    }
+  }
+}
+
 class LeaveModel {
   int? status;
   String? message;
@@ -60,18 +91,12 @@ class Leave {
         title: json["title"] ?? "",
         message: json["message"] ?? "",
         files: json["files"],
-        applyDate: json["apply_date"] == null
-            ? null
-            : DateTime.parse(json["apply_date"]),
-        fromDate: json["from_date"] == null
-            ? null
-            : DateTime.parse(json["from_date"]),
-        toDate:
-            json["to_date"] == null ? null : DateTime.parse(json["to_date"]),
+        applyDate: _parseDate(json["apply_date"]),
+        fromDate: _parseDate(json["from_date"]),
+        toDate: _parseDate(json["to_date"]),
         status: json["status"] ?? "",
         reply: json["reply"] ?? "",
-        replyOn:
-            json["reply_on"] == null ? null : DateTime.parse(json["reply_on"]),
+        replyOn: _parseDate(json["reply_on"]),
       );
 
   Map<String, dynamic> toJson() => {
