@@ -13,16 +13,25 @@ import 'package:scholar_clone/service/notification_service/helper.dart';
 import 'service/notification_service/notification_service.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  incrementNotificationCounter();
+  try {
+    await Firebase.initializeApp();
+    incrementNotificationCounter();
+  } catch (e) {
+    debugPrint('Firebase background initialization failed: $e');
+  }
 }
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // debugPrint("-=-=-=-=-=-=-=");
-  // debugPrint(await FirebaseMessaging.instance.getToken());
+  
+  try {
+    await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  } catch (e) {
+    // Firebase initialization failed - continue without Firebase
+    debugPrint('Firebase initialization failed: $e');
+  }
+  
   NotificationService.init();
   await GetStorage.init();
   LocalStorage.loadLocalData();
