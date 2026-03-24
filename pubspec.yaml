@@ -4,7 +4,7 @@ description: A new Flutter project.
 publish_to: "none"
 
 #ios
-version: 15.21.2+2
+version: 15.21.6+1
 #android
 #version: 1.0.56+56
 
@@ -67,6 +67,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
@@ -92,3 +93,8 @@ flutter:
         - asset: assets/fonts/josefin_sans/JosefinSans-Medium.ttf
         - asset: assets/fonts/josefin_sans/JosefinSans-Regular.ttf
         - asset: assets/fonts/josefin_sans/JosefinSans-SemiBold.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
