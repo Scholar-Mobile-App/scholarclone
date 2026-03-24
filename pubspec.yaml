@@ -6,7 +6,7 @@ publish_to: "none"
 #ios
 version: 15.21.6+1
 #android
-#version: 1.0.56+56
+version: 1.0.58+58
 
 environment:
   sdk: ">=2.19.2 <3.0.0"

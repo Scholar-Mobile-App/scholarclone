@@ -268,10 +268,24 @@ class LeaveController extends GetxController
     }
 
     if (responseJson![CS.status].toString() == StatusCode.Success) {
-      LeaveModel model = LeaveModel.fromJson(responseJson!);
+      try {
+        LeaveModel model = LeaveModel.fromJson(responseJson!);
 
-      for (var i = 0; i < model.data!.length; i++) {
-        leaveList.add(model.data![i]);
+        for (var i = 0; i < model.data!.length; i++) {
+          leaveList.add(model.data![i]);
+        }
+      } catch (e) {
+        // Handle date parsing errors gracefully
+        print("Error parsing leave data: $e");
+        Fluttertoast.showToast(
+          msg: "Error loading leave data",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
       }
 
       isLoading.value = false;
