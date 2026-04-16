@@ -35,6 +35,7 @@ class HomeController extends GetxController {
         isShowProgressDialog: false,
       );
     } else {
+      isLoading.value = false;
       return;
     }
 
@@ -42,8 +43,8 @@ class HomeController extends GetxController {
       previousFees.value = resJson?["previous_fees"] ?? 0;
       currentFees.value = resJson?["current_fees"] ?? 0;
       apiStatus.value = resJson?["api_status"] ?? 0;
-
-      isLoading.value = false;
     }
+
+    isLoading.value = false;
   }
 }

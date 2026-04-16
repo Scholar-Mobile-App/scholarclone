@@ -98,7 +98,11 @@ class StudentAttendanceScreen extends StatelessWidget {
               Expanded(
                 child: Container(
                   color: AppColor.bgColor,
-                  child: SingleChildScrollView(
+                  child: _controller.isLoading.value
+                      ? const Center(child: CircularProgressIndicator())
+                      : _controller.errorMessage.value.isNotEmpty
+                          ? _errorState()
+                          : SingleChildScrollView(
                     child: Column(
                       children: [
                         Container(
@@ -453,6 +457,45 @@ class StudentAttendanceScreen extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _errorState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              AppImage.nodatafound,
+              height: 130,
+            ),
+            hSizeBox20,
+            Text(
+              _controller.errorMessage.value,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            hSizeBox20,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColor.secondaryColor,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: _controller.callService,
+              child: const Text("Retry"),
+            ),
+          ],
         ),
       ),
     );

@@ -160,6 +160,8 @@ class PhotoGalleryViewScreen extends StatelessWidget {
                                     : _controller
                                         .getUrltoPhotos(data.fileName!),
                                 fit: BoxFit.cover,
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
                             )),
                         if (!_controller.isPhoto.value)

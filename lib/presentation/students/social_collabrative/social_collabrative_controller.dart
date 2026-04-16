@@ -43,15 +43,13 @@ class SocialCollabrativeController extends GetxController {
         isShowProgressDialog: false,
       );
     } else {
+      isLoading.value = false;
       return;
     }
 
     if (resJson[CS.status].toString() == StatusCode.Success) {
       SocialCollabrativeModel model = SocialCollabrativeModel.fromJson(resJson);
-
-      for (var i = 0; i < model.data!.length; i++) {
-        socialCollabrativeList.add(model.data!.entries.elementAt(i).value);
-      }
+      socialCollabrativeList.value = model.data;
     } else if (resJson[CS.status].toString() == StatusCode.Error) {
       showDialog(
         builder: (context) => CU.showDiloag(context, resJson[CS.message]),

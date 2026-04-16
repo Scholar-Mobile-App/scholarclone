@@ -96,11 +96,6 @@ class ApiClient {
       log("❌ API call failed: $e");
       log("❌ Stack trace: $stack");
 
-      await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) => CU.showDiloag(context, "An unexpected error occurred."),
-      );
       return <String, dynamic>{};
     }
   }

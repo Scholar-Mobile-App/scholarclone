@@ -44,7 +44,11 @@ Future<String> downloadExport({
   }
 
   if (isStoragePermission) {
-    if ([
+    String extension = fileUrl.split(".").last.toLowerCase();
+    if (extension == "pdf") {
+      await launchURL(fileUrl);
+      return "";
+    } else if ([
       'jpeg',
       'jpg',
       'png',
@@ -56,10 +60,9 @@ Future<String> downloadExport({
       "xltx",
       "xlsb",
       "xlsm",
-      "pdf",
       "docx"
 
-    ].contains(fileUrl.split(".").last.toLowerCase())) {
+    ].contains(extension)) {
       Directory? dir;
       String savePath = "";
       String savename = CU.getFileNameOfURL(fileUrl);

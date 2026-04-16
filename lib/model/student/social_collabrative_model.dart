@@ -7,31 +7,61 @@ String socialCollabrativeModelToJson(SocialCollabrativeModel data) =>
     json.encode(data.toJson());
 
 class SocialCollabrativeModel {
-  int? status;
+  dynamic status;
   String? message;
-  Map<String, SocialCollabrative>? data;
+  List<SocialCollabrative> data;
 
   SocialCollabrativeModel({
     this.status,
     this.message,
-    this.data,
+    this.data = const [],
   });
 
-  factory SocialCollabrativeModel.fromJson(Map<String, dynamic> json) =>
-      SocialCollabrativeModel(
-        status: json["status"],
-        message: json["message"],
-        data: Map.from(json["data"]!).map((k, v) =>
-            MapEntry<String, SocialCollabrative>(
-                k, SocialCollabrative.fromJson(v))),
-      );
+  factory SocialCollabrativeModel.fromJson(Map<String, dynamic> json) {
+    final rawData = json["data"];
+    final List<SocialCollabrative> items = [];
+
+    if (rawData is List) {
+      for (final item in rawData) {
+        if (item is Map<String, dynamic>) {
+          items.add(SocialCollabrative.fromJson(item));
+        } else if (item is Map) {
+          items.add(SocialCollabrative.fromJson(Map<String, dynamic>.from(item)));
+        }
+      }
+    } else if (rawData is Map) {
+      rawData.forEach((_, value) {
+        if (value is Map<String, dynamic>) {
+          items.add(SocialCollabrative.fromJson(value));
+        } else if (value is Map) {
+          items.add(SocialCollabrative.fromJson(Map<String, dynamic>.from(value)));
+        }
+      });
+    }
+
+    return SocialCollabrativeModel(
+      status: json["status"],
+      message: json["message"],
+      data: items,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
-        "data": Map.from(data!)
-            .map((k, v) => MapEntry<String, dynamic>(k, v.toJson())),
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
+}
+
+int? _toInt(dynamic value) {
+  if (value is int) return value;
+  if (value == null) return null;
+  return int.tryParse(value.toString());
+}
+
+DateTime? _toDate(dynamic value) {
+  if (value == null || value.toString().isEmpty) return null;
+  return DateTime.tryParse(value.toString());
 }
 
 class SocialCollabrative {
@@ -69,25 +99,20 @@ class SocialCollabrative {
 
   factory SocialCollabrative.fromJson(Map<String, dynamic> json) =>
       SocialCollabrative(
-        id: json["id"],
-        subjectId: json["subject_id"],
-        chapterId: json["chapter_id"],
-        topicId: json["topic_id"],
-        title: json["title"],
-        description: json["description"],
-        fileName: json["file_name"],
-        visibility: json["visibility"],
-        subInstituteId: json["sub_institute_id"],
-        syear: json["syear"],
-        userId: json["user_id"],
-        userProfileId: json["user_profile_id"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        conversationData: json["ConversationData"] == null
-            ? []
-            : List<Conversation>.from(
-                json["ConversationData"]!.map((x) => Conversation.fromJson(x))),
+        id: _toInt(json["id"]),
+        subjectId: _toInt(json["subject_id"]),
+        chapterId: _toInt(json["chapter_id"]),
+        topicId: _toInt(json["topic_id"]),
+        title: json["title"]?.toString(),
+        description: json["description"]?.toString(),
+        fileName: json["file_name"]?.toString(),
+        visibility: json["visibility"]?.toString(),
+        subInstituteId: _toInt(json["sub_institute_id"]),
+        syear: _toInt(json["syear"]),
+        userId: _toInt(json["user_id"]),
+        userProfileId: _toInt(json["user_profile_id"]),
+        createdAt: _toDate(json["created_at"]),
+        conversationData: _conversationList(json["ConversationData"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -108,6 +133,30 @@ class SocialCollabrative {
             ? []
             : List<dynamic>.from(conversationData!.map((x) => x.toJson())),
       };
+}
+
+List<Conversation> _conversationList(dynamic rawData) {
+  final List<Conversation> items = [];
+
+  if (rawData is List) {
+    for (final item in rawData) {
+      if (item is Map<String, dynamic>) {
+        items.add(Conversation.fromJson(item));
+      } else if (item is Map) {
+        items.add(Conversation.fromJson(Map<String, dynamic>.from(item)));
+      }
+    }
+  } else if (rawData is Map) {
+    rawData.forEach((_, value) {
+      if (value is Map<String, dynamic>) {
+        items.add(Conversation.fromJson(value));
+      } else if (value is Map) {
+        items.add(Conversation.fromJson(Map<String, dynamic>.from(value)));
+      }
+    });
+  }
+
+  return items;
 }
 
 class Conversation {
@@ -134,17 +183,15 @@ class Conversation {
   });
 
   factory Conversation.fromJson(Map<String, dynamic> json) => Conversation(
-        id: json["id"],
-        doubtId: json["doubt_id"],
-        message: json["message"],
-        userId: json["user_id"],
-        userProfileId: json["user_profile_id"],
-        syear: json["syear"],
-        subInstituteId: json["sub_institute_id"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        studentName: json["student_name"],
+        id: _toInt(json["id"]),
+        doubtId: _toInt(json["doubt_id"]),
+        message: json["message"]?.toString(),
+        userId: _toInt(json["user_id"]),
+        userProfileId: _toInt(json["user_profile_id"]),
+        syear: _toInt(json["syear"]),
+        subInstituteId: _toInt(json["sub_institute_id"]),
+        createdAt: _toDate(json["created_at"]),
+        studentName: json["student_name"]?.toString(),
       );
 
   Map<String, dynamic> toJson() => {

@@ -12,6 +12,6 @@ class StudentMainController extends GetxController {
 
   RxList<Widget> drawerOptions = <Widget>[].obs;
 
-  dynamic data = Get.arguments[0] ?? 0;
-  dynamic homeData = Get.arguments[1];
+  dynamic data = Get.arguments != null && Get.arguments.length > 0 ? Get.arguments[0] : null;
+  dynamic homeData = Get.arguments != null && Get.arguments.length > 1 ? Get.arguments[1] : null;
 }
