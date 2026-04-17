@@ -989,8 +989,9 @@ class CU {
     );
   }
 
-  static Future<void> launchURL(Uri url) async {
-    if (!await launchUrl(url)) {
+  static Future<void> launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $url');
     }
   }
@@ -1015,7 +1016,7 @@ class CU {
   }
 
   static void openEmailApp(email, subject, body) {
-    launchURL("mailto:$email?subject=$subject&body=$body" as Uri);
+    launchURL("mailto:$email?subject=$subject&body=$body");
   }
 
   static Widget getRateDialogue(BuildContext context, String url) {
@@ -1052,8 +1053,8 @@ class CU {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () => CU.launchURL(url as Uri),
+                         GestureDetector(
+                           onTap: () => CU.launchURL(url),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 8),

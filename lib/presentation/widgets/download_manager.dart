@@ -28,12 +28,18 @@ Future<String> downloadExport({
   bool open = true,
 }) async {
   bool isStoragePermission = true;
+  bool useAppDir = false;
 
   if (Platform.isAndroid) {
-    if ((await DeviceInfoPlugin().androidInfo).version.sdkInt >= 33) {
+    final sdkInt = (await DeviceInfoPlugin().androidInfo).version.sdkInt;
+    if (sdkInt >= 33) {
       // For Android 13+, use media library permission for general file downloads
       await Permission.mediaLibrary.request();
       isStoragePermission = await Permission.mediaLibrary.status.isGranted;
+    } else if (sdkInt >= 30) {
+      // For Android 11+, use app's document directory to avoid MANAGE_EXTERNAL_STORAGE
+      useAppDir = true;
+      isStoragePermission = true; // No permission needed
     } else {
       await Permission.storage.request();
       isStoragePermission = await Permission.storage.status.isGranted;
@@ -69,6 +75,9 @@ Future<String> downloadExport({
       showProgressDialog(context);
       if (Platform.isIOS) {
         dir = await getApplicationDocumentsDirectory();
+      } else if (useAppDir) {
+        // For Android 11+, use app's documents directory
+        dir = await getApplicationDocumentsDirectory();
       } else {
         dir = Directory('/storage/emulated/0/Download');
         if (!await dir.exists()) dir = await getExternalStorageDirectory();
@@ -83,7 +92,7 @@ Future<String> downloadExport({
             if (!open) {
               Get.snackbar(
                 "Download",
-                "download successfully",
+                useAppDir ? "Downloaded to app folder" : "download successfully",
                 backgroundColor: Colors.green,
                 colorText: Colors.white,
                 icon: const Icon(
