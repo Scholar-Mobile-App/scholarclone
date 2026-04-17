@@ -21,9 +21,10 @@
     <!-- Remove READ_MEDIA permissions that violate Google Play policy - using media library instead -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" tools:node="remove" />
     
     <!-- Use READ_EXTERNAL_STORAGE for Android 12 and below for general file access -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" tools:node="remove"/>
 
 
    <application

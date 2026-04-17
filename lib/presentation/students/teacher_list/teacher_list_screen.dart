@@ -84,6 +84,10 @@ class TeacherListScreen extends StatelessWidget {
                                                 imageUrl: _controller
                                                     .filterteacherList[index]
                                                     .image!,
+                                                placeholder: (context, url) =>
+                                                    Image.asset(AppImage.logo),
+                                                errorWidget: (context, url, error) =>
+                                                    Image.asset(AppImage.logo),
                                               )
                                         // : CU.loadImage(
                                         //     url: _controller

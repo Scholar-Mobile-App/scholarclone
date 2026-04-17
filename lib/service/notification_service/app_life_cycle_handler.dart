@@ -22,6 +22,9 @@ class LifecycleEventHandler extends WidgetsBindingObserver {
       case AppLifecycleState.inactive:
         log("Inactive.........");
         break;
+      case AppLifecycleState.hidden:
+        log("Hidden.........");
+        break;
       case AppLifecycleState.paused:
         log("Paused.........");
         break;

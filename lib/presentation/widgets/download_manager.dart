@@ -28,12 +28,18 @@ Future<String> downloadExport({
   bool open = true,
 }) async {
   bool isStoragePermission = true;
+  bool useAppDir = false;
 
   if (Platform.isAndroid) {
-    if ((await DeviceInfoPlugin().androidInfo).version.sdkInt >= 33) {
+    final sdkInt = (await DeviceInfoPlugin().androidInfo).version.sdkInt;
+    if (sdkInt >= 33) {
       // For Android 13+, use media library permission for general file downloads
       await Permission.mediaLibrary.request();
       isStoragePermission = await Permission.mediaLibrary.status.isGranted;
+    } else if (sdkInt >= 30) {
+      // For Android 11+, use app's document directory to avoid MANAGE_EXTERNAL_STORAGE
+      useAppDir = true;
+      isStoragePermission = true; // No permission needed
     } else {
       await Permission.storage.request();
       isStoragePermission = await Permission.storage.status.isGranted;
@@ -44,7 +50,11 @@ Future<String> downloadExport({
   }
 
   if (isStoragePermission) {
-    if ([
+    String extension = fileUrl.split(".").last.toLowerCase();
+    if (extension == "pdf") {
+      await launchURL(fileUrl);
+      return "";
+    } else if ([
       'jpeg',
       'jpg',
       'png',
@@ -56,15 +66,17 @@ Future<String> downloadExport({
       "xltx",
       "xlsb",
       "xlsm",
-      "pdf",
       "docx"
 
-    ].contains(fileUrl.split(".").last.toLowerCase())) {
+    ].contains(extension)) {
       Directory? dir;
       String savePath = "";
       String savename = CU.getFileNameOfURL(fileUrl);
       showProgressDialog(context);
       if (Platform.isIOS) {
+        dir = await getApplicationDocumentsDirectory();
+      } else if (useAppDir) {
+        // For Android 11+, use app's documents directory
         dir = await getApplicationDocumentsDirectory();
       } else {
         dir = Directory('/storage/emulated/0/Download');
@@ -80,7 +92,7 @@ Future<String> downloadExport({
             if (!open) {
               Get.snackbar(
                 "Download",
-                "download successfully",
+                useAppDir ? "Downloaded to app folder" : "download successfully",
                 backgroundColor: Colors.green,
                 colorText: Colors.white,
                 icon: const Icon(

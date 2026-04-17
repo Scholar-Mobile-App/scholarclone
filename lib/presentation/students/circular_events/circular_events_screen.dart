@@ -193,14 +193,14 @@ class CircularEventsScreen extends StatelessWidget {
                               top: 6.0, left: 12, right: 12, bottom: 12),
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: Linkify(
-                                onOpen: (link) {
-                                  launchURL(link.url);
-                                },
-                                text: data.message ?? "",
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 12)),
+                             child: Linkify(
+                                 onOpen: (link) {
+                                   CU.launchURL(link.url);
+                                 },
+                                 text: data.message ?? "",
+                                 maxLines: 3,
+                                 overflow: TextOverflow.ellipsis,
+                                 style: const TextStyle(fontSize: 12)),
                           ),
                         ),
                         ExpandableButton(
@@ -243,12 +243,12 @@ class CircularEventsScreen extends StatelessWidget {
                               top: 6.0, left: 12, right: 12, bottom: 12),
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: Linkify(
-                                onOpen: (link) {
-                                  launchURL(link.url);
-                                },
-                                text: data.message ?? "",
-                                style: const TextStyle(fontSize: 12)),
+                           child: Linkify(
+                                 onOpen: (link) {
+                                   CU.launchURL(link.url);
+                                 },
+                                 text: data.message ?? "",
+                                 style: const TextStyle(fontSize: 12)),
                           ),
                         ),
                         ExpandableButton(

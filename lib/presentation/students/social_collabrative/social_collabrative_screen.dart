@@ -43,6 +43,7 @@ class SocialCollabrativeScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           var socialCollabrative =
                               _controller.socialCollabrativeList[index];
+                          final fileName = socialCollabrative.fileName ?? "";
 
                           return Container(
                             padding: const EdgeInsets.all(15),
@@ -77,15 +78,13 @@ class SocialCollabrativeScreen extends StatelessWidget {
                                     Expanded(
                                       child: Container(),
                                     ),
-                                    if (socialCollabrative.fileName!.isNotEmpty)
+                                    if (fileName.isNotEmpty)
                                       GestureDetector(
                                         onTap: () {
                                           downloadExport(
                                             context: context,
-                                            fileUrl:
-                                                socialCollabrative.fileName!,
-                                            filename:
-                                                socialCollabrative.fileName!,
+                                            fileUrl: fileName,
+                                            filename: fileName,
                                             open: true,
                                           );
                                         },

@@ -17,6 +17,9 @@ class StudentAttendanceController extends GetxController {
 
   Map<String, dynamic>? resJson;
 
+  RxBool isLoading = false.obs;
+  RxString errorMessage = "".obs;
+
   RxString currentMonth = DateFormat.yMMMM().format(DateTime.now()).obs;
 
   RxInt holiday = 0.obs;
@@ -39,6 +42,24 @@ class StudentAttendanceController extends GetxController {
 
   RxList<DateItem> dates = <DateItem>[].obs;
 
+  List<dynamic> get attendanceData {
+    final responseData = resJson?[CS.data];
+    if (responseData is Map && responseData[CS.attendance_data] is List) {
+      return responseData[CS.attendance_data] as List<dynamic>;
+    }
+    return <dynamic>[];
+  }
+
+  List<dynamic> get holidayData {
+    final responseData = resJson?[CS.data];
+    if (responseData is Map &&
+        responseData[CS.calendar_data] is Map &&
+        responseData[CS.calendar_data][CS.holiday] is List) {
+      return responseData[CS.calendar_data][CS.holiday] as List<dynamic>;
+    }
+    return <dynamic>[];
+  }
+
   countDays() {
     try {
       holiday.value = 0;
@@ -47,22 +68,23 @@ class StudentAttendanceController extends GetxController {
       //vacation.value = 0;
       //event.value = 0;
 
-      resJson![CS.data][CS.attendance_data].forEach((element) {
+      for (final element in attendanceData) {
         log("currentMonth => $currentMonth");
         // log("attendance_date => " + DateFormat.yMMMM().format(DateFormat.yMMMM().parse(element[CS.attendance_date])));
-        if (currentMonth.value ==
-            DateFormat.yMMMM().format(
-                DateFormat("yyyy-MM-dd").parse(element[CS.attendance_date]))) {
+        final attendanceDate = parseDate(element[CS.attendance_date]);
+        if (attendanceDate != null &&
+            currentMonth.value ==
+                DateFormat.yMMMM().format(attendanceDate)) {
           element[CS.attendance_code] == "P" ? present.value++ : absent.value++;
         }
-      });
-      resJson![CS.data][CS.calendar_data][CS.holiday].forEach((element) {
-        if (currentMonth.value ==
-            DateFormat.yMMMM().format(
-                DateFormat("yyyy-MM-dd").parse(element[CS.school_date]))) {
+      }
+      for (final element in holidayData) {
+        final schoolDate = parseDate(element[CS.school_date]);
+        if (schoolDate != null &&
+            currentMonth.value == DateFormat.yMMMM().format(schoolDate)) {
           holiday.value++;
         }
-      });
+      }
       // resJson![CS.data][CS.calendar_data][CS.event].forEach((element) {
       //   if (currentMonth.value ==
       //       DateFormat.yMMMM().format(
@@ -91,6 +113,9 @@ class StudentAttendanceController extends GetxController {
   }
 
   Future<void> callService() async {
+    isLoading.value = true;
+    errorMessage.value = "";
+
     Map<String, dynamic> body = <String, dynamic>{
       CS.token: userInfo[CS.token],
       CS.student_id: userInfo[CS.student_id],
@@ -107,16 +132,18 @@ class StudentAttendanceController extends GetxController {
         isShowProgressDialog: false,
       );
     } else {
+      isLoading.value = false;
       CU.showNoInternetDialog(Get.context!, callService);
       return;
     }
 
-    if (resJson![CS.status].toString() == StatusCode.Success.toString()) {
+    if (resJson?[CS.status].toString() == StatusCode.Success.toString()) {
       countDays();
       selectedDates = [];
+      dates.clear();
       allpresent.value = 0;
       allabsent.value = 0;
-      resJson![CS.data][CS.attendance_data].forEach((element) {
+      for (final element in attendanceData) {
         element[CS.attendance_code] == "P"
             ? allpresent.value++
             : allabsent.value++;
@@ -128,28 +155,35 @@ class StudentAttendanceController extends GetxController {
         });
 
         if (element[CS.attendance_code] != null) {
+          final attendanceDate = parseDate(element[CS.attendance_date]);
+          if (attendanceDate == null) continue;
+
           dates.add(
             DateItem(
-              date: DateTime.parse(element[CS.attendance_date]),
+              date: attendanceDate,
               type: element[CS.attendance_code],
             ),
           );
         }
+      }
 
-        resJson![CS.data][CS.calendar_data][CS.holiday].forEach((element) {
-          selectedDates!.add({
-            "day": element[CS.school_date],
-            "status": "1",
-            "color": CU.secondaryColor,
-          });
+      for (final element in holidayData) {
+        final schoolDate = parseDate(element[CS.school_date]);
+        if (schoolDate == null) continue;
 
-          dates.add(
-            DateItem(
-              date: DateTime.parse(element[CS.school_date]),
-              type: "Holiday",
-            ),
-          );
+        selectedDates!.add({
+          "day": element[CS.school_date],
+          "status": "1",
+          "color": CU.secondaryColor,
         });
+
+        dates.add(
+          DateItem(
+            date: schoolDate,
+            type: "Holiday",
+          ),
+        );
+      }
         // resJson![CS.data][CS.calendar_data][CS.event].forEach((element) {
         //   selectedDates!.add({
         //     "day": element[CS.school_date],
@@ -178,10 +212,20 @@ class StudentAttendanceController extends GetxController {
         //     ),
         //   );
         // });
-      });
-    } else if (resJson![CS.status].toString() == StatusCode.Error) {
+    } else if (resJson?[CS.status].toString() == StatusCode.Error) {
+      errorMessage.value = resJson?[CS.message]?.toString() ??
+          "Attendance data is not available right now.";
       // showDialog(barrierDismissible: false, context: context, child: CU.showDiloag(context, resJson[CS.message]));
+    } else {
+      errorMessage.value = "Attendance data is not available right now.";
     }
+
+    isLoading.value = false;
+  }
+
+  DateTime? parseDate(dynamic value) {
+    if (value == null) return null;
+    return DateTime.tryParse(value.toString());
   }
 }
 
