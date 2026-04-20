@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:scholar_clone/core/utils/cs.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
+import 'package:scholar_clone/core/utils/local_storage.dart';
 
 enum CallMethod { get, post, put, delete }
 
@@ -23,9 +24,16 @@ class ApiClient {
 
     Dio dio = Dio();
 
+    // Add Authorization header if token is available
+    String? token = _getToken();
+    if (token != null && token.isNotEmpty) {
+      dio.options.headers['Authorization'] = 'Bearer $token';
+    }
+
     log("+++++++++++++++++++++ API Request +++++++++++++++++++++");
     log("URL: $apiUrl");
     log("Body: ${body.toString()}");
+    log("Headers: ${dio.options.headers}");
     log("+++++++++++++++++++++ API Request +++++++++++++++++++++");
 
     try {
@@ -98,5 +106,25 @@ class ApiClient {
 
       return <String, dynamic>{};
     }
+  }
+
+  static String? _getToken() {
+    try {
+      String userProfile = LocalStorage.loginInfo["user_profile_name"] ?? "";
+      switch (userProfile) {
+        case "Student":
+          if (LocalStorage.studentList.isNotEmpty) {
+            return LocalStorage.studentList[0]["token"];
+          }
+          break;
+        case "Teacher":
+          return LocalStorage.teacherModel["token"];
+        case "Admin":
+          return LocalStorage.adminModel["token"];
+      }
+    } catch (e) {
+      log("Error getting token: $e");
+    }
+    return null;
   }
 }
