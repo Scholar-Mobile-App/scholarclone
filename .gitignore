@@ -43,6 +43,7 @@ web/packages/
 **/android/captures/
 **/android/gradle-wrapper.jar
 **/android/gradle.properties
+!android/gradle.properties
 **/android/local.properties
 **/android/gradlew
 **/android/gradlew.bat
