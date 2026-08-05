@@ -17,15 +17,11 @@ class LocalStorage {
   static bool isAdmin = false;
   static bool isLogin = false;
   static RxInt notificationCount = 0.obs;
-  static dynamic userInfo;
-  static dynamic teacherInfo;
-  static dynamic adminInfo;
+  static dynamic userInfo = <dynamic>[];
+  static dynamic teacherInfo = <String, dynamic>{};
+  static dynamic adminInfo = <String, dynamic>{};
   static Map<String, dynamic> loginInfo = {};
   static String gcmToken = "";
-
-  static String jsonData = LocalStorage.userInfo;
-  static String jsonTeacherData = LocalStorage.teacherInfo;
-  static String jsonAdminData = LocalStorage.adminInfo;
 
   static storeLoginInfo(json) async {
     final prefs = GetStorage();
@@ -34,10 +30,9 @@ class LocalStorage {
     loadLocalData();
   }
 
-  static List<Map<String, dynamic>> studentList =
-      json.decode(jsonData).cast<Map<String, dynamic>>();
-  static Map<String, dynamic> teacherModel = json.decode(jsonTeacherData);
-  static Map<String, dynamic> adminModel = json.decode(jsonAdminData);
+  static List<Map<String, dynamic>> studentList = [];
+  static Map<String, dynamic> teacherModel = {};
+  static Map<String, dynamic> adminModel = {};
 
   static storeUserInfo(json) async {
     final prefs = GetStorage();
@@ -60,12 +55,41 @@ class LocalStorage {
     loadLocalData();
   }
 
-  static void loadLocalData() async {
+  static void loadLocalData() {
     final prefs = GetStorage();
-    userInfo = prefs.read(Prefs.USER_INFO) ?? {};
-    teacherInfo = prefs.read(Prefs.TEACHER_INFO) ?? {};
+    userInfo = prefs.read(Prefs.USER_INFO) ?? <dynamic>[];
+    teacherInfo = prefs.read(Prefs.TEACHER_INFO) ?? <String, dynamic>{};
     loginInfo = prefs.read(Prefs.LOGIN_INFO) ?? {};
-    adminInfo = prefs.read(Prefs.ADMIN_INFO) ?? {};
+    adminInfo = prefs.read(Prefs.ADMIN_INFO) ?? <String, dynamic>{};
+
+    studentList = _decodeList(userInfo);
+    teacherModel = _decodeMap(teacherInfo);
+    adminModel = _decodeMap(adminInfo);
+  }
+
+  static List<Map<String, dynamic>> _decodeList(dynamic value) {
+    try {
+      final decoded = value is String ? json.decode(value) : value;
+      if (decoded is List) {
+        return decoded
+            .whereType<Map>()
+            .map((item) => Map<String, dynamic>.from(item))
+            .toList();
+      }
+    } catch (_) {
+      // Invalid persisted data should behave like an empty session.
+    }
+    return [];
+  }
+
+  static Map<String, dynamic> _decodeMap(dynamic value) {
+    try {
+      final decoded = value is String ? json.decode(value) : value;
+      if (decoded is Map) return Map<String, dynamic>.from(decoded);
+    } catch (_) {
+      // Invalid persisted data should behave like an empty session.
+    }
+    return {};
   }
 
   static void clearLocalData() {

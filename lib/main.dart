@@ -23,16 +23,20 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+  var firebaseReady = false;
+
   try {
     await Firebase.initializeApp();
+    firebaseReady = true;
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   } catch (e) {
     // Firebase initialization failed - continue without Firebase
     debugPrint('Firebase initialization failed: $e');
   }
-  
-  NotificationService.init();
+
+  if (firebaseReady) {
+    await NotificationService.init();
+  }
   await GetStorage.init();
   LocalStorage.loadLocalData();
   WidgetsBinding.instance.addObserver(
