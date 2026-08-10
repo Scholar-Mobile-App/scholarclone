@@ -64,8 +64,12 @@ class StudentUserListController extends GetxController {
   Future<void> callGcmInsertService() async {
     Map<String, dynamic> resJson;
 
-    String? fcmToken = await FirebaseMessaging.instance.getToken();
-    LocalStorage.gcmToken = fcmToken!;
+    final fcmToken = await _getFcmToken();
+    if (fcmToken == null || fcmToken.isEmpty) {
+      log('FCM token is not available yet');
+      return;
+    }
+    LocalStorage.gcmToken = fcmToken;
 
     log("GCM REG ID $fcmToken");
 
@@ -93,6 +97,44 @@ class StudentUserListController extends GetxController {
         barrierDismissible: false,
         context: Get.context!,
       );
+    }
+  }
+
+  Future<String?> _getFcmToken() async {
+    try {
+      final messaging = FirebaseMessaging.instance;
+      final settings = await messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        log('Notification permission was denied');
+        return null;
+      }
+
+      // On Apple platforms Firebase cannot issue an FCM token until APNs has
+      // registered the device. This can take a moment after permission is
+      // granted, especially on the first app launch.
+      if (Platform.isIOS) {
+        String? apnsToken;
+        for (var attempt = 0; attempt < 10 && apnsToken == null; attempt++) {
+          apnsToken = await messaging.getAPNSToken();
+          if (apnsToken == null) {
+            await Future<void>.delayed(const Duration(milliseconds: 500));
+          }
+        }
+        if (apnsToken == null) {
+          log('APNs token is not available; FCM registration postponed');
+          return null;
+        }
+      }
+
+      return await messaging.getToken();
+    } catch (error, stackTrace) {
+      log('Unable to obtain FCM token', error: error, stackTrace: stackTrace);
+      return null;
     }
   }
 
