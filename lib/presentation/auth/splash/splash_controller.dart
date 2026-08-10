@@ -15,9 +15,17 @@ import 'package:scholar_clone/routes/app_routes.dart';
 class SplashController extends GetxController {
   @override
   void onInit() {
-    callService();
-
     super.onInit();
+    // Login must remain available even if an earlier session is stale or the
+    // startup services are slow. Authentication is performed from the login
+    // screen instead of blocking the splash screen.
+    Future<void>.delayed(const Duration(seconds: 1), _openLogin);
+  }
+
+  void _openLogin() {
+    if (Get.currentRoute != AppRoutes.login) {
+      Get.offAllNamed(AppRoutes.login);
+    }
   }
 
   Future<void> verifyOTP() async {
@@ -57,66 +65,73 @@ class SplashController extends GetxController {
           );
         }
 
-        if (resJson![CS.status].toString() == StatusCode.Success) {
+        final response = resJson;
+        if (response != null &&
+            response[CS.status].toString() == StatusCode.Success) {
           if (LocalStorage.loginInfo["user_profile_name"] == "Student") {
-            await LocalStorage.storeUserInfo(jsonEncode(resJson[CS.data]));
-            LocalStorage.storeLoginInfo(resJson[CS.data][0]);
+            await LocalStorage.storeUserInfo(jsonEncode(response[CS.data]));
+            LocalStorage.storeLoginInfo(response[CS.data][0]);
             Get.offNamedUntil(
               AppRoutes.studentUserList,
               (route) => false,
             );
           } else if (LocalStorage.loginInfo["user_profile_name"] == "Teacher") {
-            await LocalStorage.storeTeacherInfo(jsonEncode(resJson[CS.data]));
-            LocalStorage.storeLoginInfo(resJson[CS.data]);
+            await LocalStorage.storeTeacherInfo(jsonEncode(response[CS.data]));
+            LocalStorage.storeLoginInfo(response[CS.data]);
             Get.offNamedUntil(
               AppRoutes.teacherMain,
               (route) => false,
             );
           } else if (LocalStorage.loginInfo["user_profile_name"] == "Admin") {
-            await LocalStorage.storeAdminInfo(jsonEncode(resJson[CS.data]));
-            LocalStorage.storeLoginInfo(resJson[CS.data]);
+            await LocalStorage.storeAdminInfo(jsonEncode(response[CS.data]));
+            LocalStorage.storeLoginInfo(response[CS.data]);
 
             Get.offNamedUntil(
               AppRoutes.adminMain,
               (route) => false,
             );
           }
-        } else if (resJson[CS.status].toString() == StatusCode.Error) {
-          // CU.showToast(Get.context!, resJson[CS.message]);
-          Future.delayed(
-            const Duration(milliseconds: 300),
-            () => {Get.offAllNamed(AppRoutes.login)},
-          );
+        } else {
+          _openLogin();
         }
       } else {
-        CU.showNoInternetDialog(Get.context!, verifyOTP);
-        return;
+        _openLogin();
       }
     } else {
-      Future.delayed(
-        const Duration(milliseconds: 300),
-        () => {Get.offAllNamed(AppRoutes.login)},
-      );
+      _openLogin();
     }
   }
 
   Map<String, dynamic> resJson = {};
 
   Future<void> callService() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    String appVersion = packageInfo.version;
+    // A signed-out user must never be held on the splash screen by the
+    // optional remote version check.
+    if (LocalStorage.loginInfo["user_profile_name"] == null) {
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+      _openLogin();
+      return;
+    }
+
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    final String appVersion = packageInfo.version;
 
     log("App version $appVersion");
 
     if (await CU.checkInternet()) {
-      resJson = await ApiClient.call(
-        Get.context!,
-        apiUrl: "https://erp.triz.co.in/api/playscreen",
-        body: resJson,
-        isShowProgressDialog: false,
-      );
+      try {
+        resJson = await ApiClient.call(
+          Get.context!,
+          apiUrl: "https://erp.triz.co.in/api/playscreen",
+          body: resJson,
+          isShowProgressDialog: false,
+        ).timeout(const Duration(seconds: 10));
+      } catch (_) {
+        _openLogin();
+        return;
+      }
     } else {
-      CU.showNoInternetDialog(Get.context!, callService);
+      _openLogin();
       return;
     }
 
@@ -132,6 +147,10 @@ class SplashController extends GetxController {
       if (appVersion != data[CS.appVersion] && data[CS.isUpdate] == 1) {
         await CU.showUpdateDiloag(
             Get.context!, data[CS.message], data[CS.isComplusory]);
+
+        // Non-compulsory update dialogs can be dismissed. Continue startup
+        // instead of leaving the user on the splash screen.
+        await verifyOTP();
 
         log(".............................UPDATE");
       } else if (data[CS.is_maintenance] == 1) {
@@ -176,13 +195,8 @@ class SplashController extends GetxController {
       //     () => {Get.offAllNamed(AppRoutes.studentUserList)},
       //   );
       // }
-    } else if (resJson[CS.status].toString() == StatusCode.Error) {
-      showDialog(
-        builder: (context) => CU.showDiloag(Get.context!, resJson[CS.message]),
-        barrierDismissible: false,
-        context: Get.context!,
-      );
-      return;
+    } else {
+      _openLogin();
     }
   }
 }
