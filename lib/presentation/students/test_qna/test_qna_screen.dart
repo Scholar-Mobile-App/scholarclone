@@ -156,6 +156,40 @@ class TestQnAScreen extends StatelessWidget {
     );
   }
 
+  /// The question editor returns HTML tags encoded as text (for example,
+  /// `&lt;img ...&gt;`). Decode those entities before handing the value to
+  /// [HtmlWidget], otherwise it displays the tag instead of the image.
+  String _decodeHtml(dynamic value) {
+    var html = value?.toString() ?? '';
+
+    const entities = <String, String>{
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#39;': "'",
+      '&apos;': "'",
+      '&nbsp;': ' ',
+      '&amp;': '&',
+    };
+
+    entities.forEach((entity, character) {
+      html = html.replaceAll(entity, character);
+    });
+
+    return html.replaceAllMapped(
+      RegExp(r'&#(x[0-9a-fA-F]+|[0-9]+);'),
+      (match) {
+        final encoded = match.group(1)!;
+        final codePoint = encoded.startsWith('x')
+            ? int.tryParse(encoded.substring(1), radix: 16)
+            : int.tryParse(encoded);
+        return codePoint == null
+            ? match.group(0)!
+            : String.fromCharCode(codePoint);
+      },
+    );
+  }
+
   quetionTab(data, ansData) {
     return ScrollConfiguration(
       behavior: const ScrollBehavior(),
@@ -187,7 +221,7 @@ class TestQnAScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      HtmlWidget(data["question_title"]),
+                      HtmlWidget(_decodeHtml(data["question_title"])),
                       Container(
                         padding: const EdgeInsets.fromLTRB(0, 16, 0, 4),
                         child: MySeparator(
@@ -223,7 +257,7 @@ class TestQnAScreen extends StatelessWidget {
                                 children: <Widget>[
                                   Expanded(
                                     child: HtmlWidget(
-                                      data["Answer"][i]["answer"],
+                                      _decodeHtml(data["Answer"][i]["answer"]),
                                     ),
                                   ),
                                   Container(

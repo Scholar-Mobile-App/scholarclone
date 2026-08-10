@@ -32,7 +32,7 @@ void main() async {
     debugPrint('Firebase initialization failed: $e');
   }
   
-  NotificationService.init();
+  await NotificationService.init();
   await GetStorage.init();
   LocalStorage.loadLocalData();
   WidgetsBinding.instance.addObserver(

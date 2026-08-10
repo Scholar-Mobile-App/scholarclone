@@ -19,13 +19,17 @@ abstract class NotificationService {
   static final GlobalKey<ScaffoldState> scaffoldkey =
       GlobalKey<ScaffoldState>();
 
-  static init() async {
-    FirebaseMessaging.instance.requestPermission();
-    firebaseinit();
+  static Future<void> init() async {
+    await FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    await firebaseinit();
     firebaseMessaging();
   }
 
-  static firebaseinit() {
+  static Future<void> firebaseinit() async {
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     channel = const AndroidNotificationChannel(
       'high_importance_channel',
@@ -44,9 +48,16 @@ abstract class NotificationService {
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
-    flutterLocalNotificationsPlugin!.initialize(
+    await flutterLocalNotificationsPlugin!.initialize(
       initializationSettings,
     );
+
+    // FCM background notification payloads use this channel. The Dart channel
+    // definition must also be registered with Android's notification manager.
+    final androidPlugin = flutterLocalNotificationsPlugin!
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
+    await androidPlugin?.createNotificationChannel(channel!);
   }
 
   static firebaseMessaging() {
