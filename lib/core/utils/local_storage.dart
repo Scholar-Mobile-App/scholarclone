@@ -23,9 +23,9 @@ class LocalStorage {
   static Map<String, dynamic> loginInfo = {};
   static String gcmToken = "";
 
-  static storeLoginInfo(json) async {
+  static Future<void> storeLoginInfo(json) async {
     final prefs = GetStorage();
-    prefs.write(Prefs.LOGIN_INFO, json);
+    await prefs.write(Prefs.LOGIN_INFO, json);
     loginInfo = prefs.read(Prefs.LOGIN_INFO);
     loadLocalData();
   }
@@ -34,23 +34,23 @@ class LocalStorage {
   static Map<String, dynamic> teacherModel = {};
   static Map<String, dynamic> adminModel = {};
 
-  static storeUserInfo(json) async {
+  static Future<void> storeUserInfo(json) async {
     final prefs = GetStorage();
-    prefs.write(Prefs.USER_INFO, json);
+    await prefs.write(Prefs.USER_INFO, json);
     userInfo = prefs.read(Prefs.USER_INFO);
     loadLocalData();
   }
 
-  static storeTeacherInfo(json) async {
+  static Future<void> storeTeacherInfo(json) async {
     final prefs = GetStorage();
-    prefs.write(Prefs.TEACHER_INFO, json);
+    await prefs.write(Prefs.TEACHER_INFO, json);
     teacherInfo = prefs.read(Prefs.TEACHER_INFO);
     loadLocalData();
   }
 
-  static storeAdminInfo(json) async {
+  static Future<void> storeAdminInfo(json) async {
     final prefs = GetStorage();
-    prefs.write(Prefs.ADMIN_INFO, json);
+    await prefs.write(Prefs.ADMIN_INFO, json);
     adminInfo = prefs.read(Prefs.ADMIN_INFO);
     loadLocalData();
   }

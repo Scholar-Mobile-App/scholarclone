@@ -98,21 +98,21 @@ class LoginController extends GetxController {
     if (resJson![CS.status].toString() == StatusCode.Success) {
       if (selectedLogin.value == "Student/Parents") {
         await LocalStorage.storeUserInfo(jsonEncode(resJson[CS.data]));
-        LocalStorage.storeLoginInfo(resJson[CS.data][0]);
+        await LocalStorage.storeLoginInfo(resJson[CS.data][0]);
         Get.offNamedUntil(
           AppRoutes.studentUserList,
           (route) => false,
         );
       } else if (selectedLogin.value == "Teacher/Staff") {
         await LocalStorage.storeTeacherInfo(jsonEncode(resJson[CS.data]));
-        LocalStorage.storeLoginInfo(resJson[CS.data]);
+        await LocalStorage.storeLoginInfo(resJson[CS.data]);
         Get.offNamedUntil(
           AppRoutes.teacherMain,
           (route) => false,
         );
       } else if (selectedLogin.value == "Admin/Trustee/Principal") {
         await LocalStorage.storeAdminInfo(jsonEncode(resJson[CS.data]));
-        LocalStorage.storeLoginInfo(resJson[CS.data]);
+        await LocalStorage.storeLoginInfo(resJson[CS.data]);
 
         Get.offNamedUntil(
           AppRoutes.adminMain,

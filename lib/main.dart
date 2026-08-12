@@ -36,7 +36,16 @@ void main() async {
 
 
   if (firebaseReady) {
-    await NotificationService.init();
+    // Notifications must not prevent the application UI from starting. For
+    // example, a missing Android notification icon in a packaged release
+    // should disable notification setup for this launch, not leave users on
+    // the native splash screen indefinitely.
+    try {
+      await NotificationService.init();
+    } catch (e, stackTrace) {
+      debugPrint('Notification initialization failed: $e');
+      debugPrintStack(stackTrace: stackTrace);
+    }
   }
 
   await GetStorage.init();

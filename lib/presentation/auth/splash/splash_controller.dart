@@ -16,11 +16,41 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Login must remain available even if an earlier session is stale or the
-    // startup services are slow. Authentication is performed from the login
-    // screen instead of blocking the splash screen.
-    Future<void>.delayed(const Duration(seconds: 1), _openLogin);
+    Future<void>.delayed(const Duration(seconds: 1), _restoreSession);
   }
+
+  void _restoreSession() {
+    final profile = LocalStorage.loginInfo["user_profile_name"]?.toString();
+
+    // GetStorage is initialized before the app starts, so the saved session
+    // is available here after a full application restart.
+    switch (profile) {
+      case "Student":
+        if (LocalStorage.studentList.isNotEmpty &&
+            _hasToken(LocalStorage.studentList.first)) {
+          Get.offAllNamed(AppRoutes.studentUserList);
+          return;
+        }
+        break;
+      case "Teacher":
+        if (_hasToken(LocalStorage.teacherModel)) {
+          Get.offAllNamed(AppRoutes.teacherMain);
+          return;
+        }
+        break;
+      case "Admin":
+        if (_hasToken(LocalStorage.adminModel)) {
+          Get.offAllNamed(AppRoutes.adminMain);
+          return;
+        }
+        break;
+    }
+
+    _openLogin();
+  }
+
+  bool _hasToken(Map<String, dynamic> user) =>
+      user[CS.token]?.toString().isNotEmpty == true;
 
   void _openLogin() {
     if (Get.currentRoute != AppRoutes.login) {
@@ -70,21 +100,21 @@ class SplashController extends GetxController {
             response[CS.status].toString() == StatusCode.Success) {
           if (LocalStorage.loginInfo["user_profile_name"] == "Student") {
             await LocalStorage.storeUserInfo(jsonEncode(response[CS.data]));
-            LocalStorage.storeLoginInfo(response[CS.data][0]);
+            await LocalStorage.storeLoginInfo(response[CS.data][0]);
             Get.offNamedUntil(
               AppRoutes.studentUserList,
               (route) => false,
             );
           } else if (LocalStorage.loginInfo["user_profile_name"] == "Teacher") {
             await LocalStorage.storeTeacherInfo(jsonEncode(response[CS.data]));
-            LocalStorage.storeLoginInfo(response[CS.data]);
+            await LocalStorage.storeLoginInfo(response[CS.data]);
             Get.offNamedUntil(
               AppRoutes.teacherMain,
               (route) => false,
             );
           } else if (LocalStorage.loginInfo["user_profile_name"] == "Admin") {
             await LocalStorage.storeAdminInfo(jsonEncode(response[CS.data]));
-            LocalStorage.storeLoginInfo(response[CS.data]);
+            await LocalStorage.storeLoginInfo(response[CS.data]);
 
             Get.offNamedUntil(
               AppRoutes.adminMain,
