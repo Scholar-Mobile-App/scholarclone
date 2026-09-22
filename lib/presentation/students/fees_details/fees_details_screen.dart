@@ -7,6 +7,7 @@ import 'package:scholar_clone/presentation/students/fees_details/view_receipt/re
 import 'package:scholar_clone/presentation/students/fees_details/fees_details_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 class FeesDetailsScreen extends StatelessWidget {
@@ -159,6 +160,7 @@ class FeesDetailsScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

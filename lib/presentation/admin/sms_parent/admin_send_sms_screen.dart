@@ -7,6 +7,7 @@ import 'package:scholar_clone/presentation/admin/sms_parent/admin_send_sms_contr
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class AdminSendSMSScreen extends StatelessWidget {
   AdminSendSMSScreen({super.key});
@@ -163,6 +164,7 @@ class AdminSendSMSScreen extends StatelessWidget {
                   ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

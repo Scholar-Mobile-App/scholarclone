@@ -8,6 +8,7 @@ import 'package:scholar_clone/model/admin/get_admin_student_list_model.dart';
 import 'package:scholar_clone/presentation/admin/assign_homework/admin_assign_homework_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class AdminAssignHomeWorkScreen extends StatelessWidget {
   AdminAssignHomeWorkScreen({super.key});
@@ -92,6 +93,7 @@ class AdminAssignHomeWorkScreen extends StatelessWidget {
             ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/health_details/health_details_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 class HealthDetailsScreen extends StatelessWidget {
@@ -167,6 +168,7 @@ class HealthDetailsScreen extends StatelessWidget {
                       );
                     },
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

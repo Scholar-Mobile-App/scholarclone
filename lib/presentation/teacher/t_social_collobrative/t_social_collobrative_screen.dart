@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/teacher/t_social_collobrative/t_social_collobrative_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class TeacherSocialCollobrativeScreen extends StatelessWidget {
   TeacherSocialCollobrativeScreen({super.key});
@@ -275,6 +276,7 @@ class TeacherSocialCollobrativeScreen extends StatelessWidget {
                     ],
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

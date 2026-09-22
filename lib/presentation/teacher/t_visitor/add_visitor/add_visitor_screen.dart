@@ -7,6 +7,7 @@ import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'add_visitor_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../../../core/utils/constant_sizebox.dart';
 
@@ -287,6 +288,7 @@ class AddVisitorScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

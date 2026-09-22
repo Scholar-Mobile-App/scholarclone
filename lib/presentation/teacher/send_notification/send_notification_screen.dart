@@ -7,6 +7,7 @@ import 'package:scholar_clone/presentation/teacher/send_notification/send_notifi
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class SendNotificationScreen extends StatelessWidget {
   SendNotificationScreen({super.key});
@@ -69,6 +70,7 @@ class SendNotificationScreen extends StatelessWidget {
                   ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

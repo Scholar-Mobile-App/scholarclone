@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:scholar_clone/presentation/students/photos_gallery_view/photos_gallery_view_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 import 'package:share_plus/share_plus.dart';
@@ -195,6 +196,7 @@ class PhotoGalleryViewScreen extends StatelessWidget {
             );
           },
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

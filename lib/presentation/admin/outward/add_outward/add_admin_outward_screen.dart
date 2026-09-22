@@ -7,6 +7,7 @@ import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_drop_down.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 'add_admin_outward_controller.dart';
 
@@ -120,6 +121,7 @@ class AddAdminOutwardScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

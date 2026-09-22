@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../widgets/app_button.dart';
 import '../../widgets/app_text_field.dart';
@@ -171,6 +172,7 @@ class AdminStudentDiscliplineScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

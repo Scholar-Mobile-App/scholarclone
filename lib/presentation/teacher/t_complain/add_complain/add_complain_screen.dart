@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../../../core/utils/constant_sizebox.dart';
 import 'add_complain_controller.dart';
@@ -183,6 +184,7 @@ class AddComplainScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

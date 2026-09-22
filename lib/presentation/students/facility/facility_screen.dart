@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/facility/facility_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FacilityScreen extends StatelessWidget {
@@ -68,6 +69,7 @@ class FacilityScreen extends StatelessWidget {
                     },
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

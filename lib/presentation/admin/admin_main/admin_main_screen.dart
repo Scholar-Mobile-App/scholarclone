@@ -10,6 +10,7 @@ import 'package:scholar_clone/core/utils/app_image.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/model/student/home_data_model.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -328,6 +329,7 @@ class AdminMainScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

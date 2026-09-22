@@ -4,6 +4,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 'add_exam_controller.dart';
 
@@ -195,6 +196,7 @@ class AddExamScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

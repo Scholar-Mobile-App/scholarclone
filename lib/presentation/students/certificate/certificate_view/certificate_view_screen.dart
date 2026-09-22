@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../widgets/app_bar.dart';
@@ -27,6 +28,7 @@ class CertificateViewScreen extends StatelessWidget {
             ),
           ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

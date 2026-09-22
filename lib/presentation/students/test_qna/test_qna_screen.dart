@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/app_image.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/my_separator.dart';
 
 import 'test_qna_controller.dart';
@@ -152,6 +153,7 @@ class TestQnAScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

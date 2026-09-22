@@ -9,6 +9,7 @@ import 'package:scholar_clone/presentation/teacher/leave_history/leave_history_c
 import 'package:scholar_clone/presentation/teacher/my_leave/my_leave_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class LeaveHistoryScreen extends StatelessWidget {
   LeaveHistoryScreen({super.key});
@@ -127,6 +128,7 @@ class LeaveHistoryScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

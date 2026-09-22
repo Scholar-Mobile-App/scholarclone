@@ -4,6 +4,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 't_notification_report_controller.dart';
 
@@ -123,6 +124,7 @@ class TeacherNotificationReportScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

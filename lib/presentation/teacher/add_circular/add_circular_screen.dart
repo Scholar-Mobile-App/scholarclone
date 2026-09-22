@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/teacher/add_circular/add_circular_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class AddCircularScreen extends StatelessWidget {
   AddCircularScreen({super.key});
@@ -241,6 +242,7 @@ class AddCircularScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

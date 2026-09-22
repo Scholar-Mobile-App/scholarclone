@@ -8,6 +8,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 
 import 'package:scholar_clone/presentation/students/test_report/test_report_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class TestReportScreen extends StatelessWidget {
   TestReportScreen({super.key});
@@ -336,6 +337,7 @@ class TestReportScreen extends StatelessWidget {
                       )
                     ],
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

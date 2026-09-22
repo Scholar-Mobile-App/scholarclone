@@ -11,6 +11,7 @@ import 'package:scholar_clone/presentation/admin/capture_attendance/admin_captur
 import 'package:scholar_clone/presentation/teacher/take_attendance/take_attendance_screen.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class AdminCaptureAttendanceScreen extends StatelessWidget {
   AdminCaptureAttendanceScreen({super.key});
@@ -274,6 +275,7 @@ class AdminCaptureAttendanceScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

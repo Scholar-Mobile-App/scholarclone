@@ -9,6 +9,7 @@ import 'package:scholar_clone/core/utils/cs.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/model/admin/admin_outward_model.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 import 'admin_inward_controller.dart';
@@ -291,6 +292,7 @@ class AdminInwardScreen extends StatelessWidget {
                     },
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

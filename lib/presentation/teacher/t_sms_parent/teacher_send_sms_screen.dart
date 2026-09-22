@@ -7,6 +7,7 @@ import 'package:scholar_clone/model/teacher/assign_homework/studen_list_model.da
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class SendSMSScreen extends StatelessWidget {
   SendSMSScreen({super.key});
@@ -55,6 +56,7 @@ class SendSMSScreen extends StatelessWidget {
                   ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

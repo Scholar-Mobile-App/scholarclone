@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 'fees_collect_details_controller.dart';
 
@@ -238,6 +239,7 @@ class FeesCollectDetailsScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

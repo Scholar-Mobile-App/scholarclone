@@ -5,6 +5,7 @@ import 'package:scholar_clone/presentation/teacher/lesson_planning/lesson_planni
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class LessonPlanningScreen extends StatelessWidget {
   LessonPlanningScreen({super.key});
@@ -137,6 +138,7 @@ class LessonPlanningScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/model/teacher/assign_homework/studen_list_model.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../../core/utils/app_color.dart';
 
@@ -244,6 +245,7 @@ class StudentProfileListDetailScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

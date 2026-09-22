@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/leaderboard/leaderboard_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class LeaderboardScreen extends StatelessWidget {
   LeaderboardScreen({super.key});
@@ -97,6 +98,7 @@ class LeaderboardScreen extends StatelessWidget {
                     ],
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

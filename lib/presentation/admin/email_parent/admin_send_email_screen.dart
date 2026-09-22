@@ -6,6 +6,7 @@ import 'package:scholar_clone/model/teacher/assign_homework/studen_list_model.da
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 'admin_send_email_controller.dart';
 
@@ -176,6 +177,7 @@ class AdminSendEmailScreen extends StatelessWidget {
                   ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

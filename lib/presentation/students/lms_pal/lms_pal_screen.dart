@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/app_color.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 import '../../../core/utils/cu.dart';
@@ -124,6 +125,7 @@ class PalScreen extends StatelessWidget {
                 ),
               ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/teacher/own_profile/own_profile_screen.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import 'teacher_profile_controller.dart';
 
@@ -223,6 +224,7 @@ class TeacherProfileScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

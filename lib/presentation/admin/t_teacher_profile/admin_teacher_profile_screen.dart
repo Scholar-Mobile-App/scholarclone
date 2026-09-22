@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/app_image.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 import 'admin_teacher_profile_controller.dart';
@@ -149,6 +150,7 @@ class AdminTeacherProfileScreen extends StatelessWidget {
                       )
                     ],
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

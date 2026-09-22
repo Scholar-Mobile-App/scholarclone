@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:scholar_clone/core/utils/utility.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class StudentAttendancePhotoScreen extends StatelessWidget {
   StudentAttendancePhotoScreen({super.key});
@@ -318,6 +319,7 @@ class StudentAttendancePhotoScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

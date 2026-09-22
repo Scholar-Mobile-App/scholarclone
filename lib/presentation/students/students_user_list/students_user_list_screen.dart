@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/app_image.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cs.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 import 'students_user_list_controller.dart';
@@ -220,6 +221,7 @@ class StudentUserListScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

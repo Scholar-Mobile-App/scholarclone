@@ -10,6 +10,7 @@ import 'package:scholar_clone/core/utils/app_image.dart';
 import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/leave/leave_controller.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class LeaveScreen extends StatelessWidget {
   LeaveScreen({super.key});
@@ -86,6 +87,7 @@ class LeaveScreen extends StatelessWidget {
               statusTab(),
             ],
           ),
+          bottomNavigationBar: const BottomInsetSpacer(),
         ),
       ),
     );
@@ -415,6 +417,7 @@ class LeaveScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const BottomInsetSpacer(),
             ],
           );
         });

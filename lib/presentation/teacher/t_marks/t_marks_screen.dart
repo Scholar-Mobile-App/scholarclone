@@ -4,6 +4,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/teacher/t_marks/t_marks_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class TeacherMarkScreen extends StatelessWidget {
@@ -189,6 +190,7 @@ class TeacherMarkScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/core/utils/utility.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 import 'virtual_classroom_controller.dart';
@@ -238,6 +239,7 @@ class VirtualClassroomScreen extends StatelessWidget {
                     ],
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

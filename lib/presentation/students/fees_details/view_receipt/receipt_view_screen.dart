@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../../widgets/app_bar.dart';
 import 'receipt_view_controller.dart';
@@ -30,6 +31,7 @@ class ReceiptViewScreen extends StatelessWidget {
         ),
       ]),
       body: HtmlWidget(htmltext),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class RippleButtonDemo extends StatefulWidget {
   const RippleButtonDemo({super.key, required this.title, this.onTap});
@@ -103,6 +104,7 @@ class _RippleButtonDemoState extends State<RippleButtonDemo>
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(child: _buildRippleButton()),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

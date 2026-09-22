@@ -110,12 +110,16 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 
   @override
   Widget build(BuildContext context) {
+    // The system navigation bar is drawn over the app on Android 15+, so the
+    // bar grows by that much and keeps its tabs above it.
+    final double bottomInset = MediaQuery.paddingOf(context).bottom;
     return Stack(
       clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         Container(
-          height: BAR_HEIGHT,
+          height: BAR_HEIGHT + bottomInset,
+          padding: EdgeInsets.only(bottom: bottomInset),
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: shadowColor, offset: const Offset(0, -1), blurRadius: 8)
@@ -149,7 +153,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
               curve: Curves.easeOut,
               alignment: Alignment(_circleAlignX, 1),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+                padding: EdgeInsets.only(bottom: 15 + bottomInset),
                 child: FractionallySizedBox(
                   widthFactor: 1 / widget.tabs.length,
                   child: GestureDetector(

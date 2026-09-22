@@ -8,6 +8,7 @@ import 'package:scholar_clone/presentation/teacher/my_leave/my_leave_controller.
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class ApplyLeaveScreen extends StatelessWidget {
   ApplyLeaveScreen({super.key});
@@ -108,6 +109,7 @@ class ApplyLeaveScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

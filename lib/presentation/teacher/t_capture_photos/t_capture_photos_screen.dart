@@ -6,6 +6,7 @@ import 'package:scholar_clone/model/teacher/assign_homework/studen_list_model.da
 import 'package:scholar_clone/presentation/teacher/t_capture_photos/t_capture_photos_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class TeacherCapturePhotoScreen extends StatelessWidget {
@@ -123,6 +124,7 @@ class TeacherCapturePhotoScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

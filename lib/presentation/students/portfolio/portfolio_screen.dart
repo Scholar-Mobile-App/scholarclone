@@ -11,6 +11,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/model/student/portfolio_model.dart';
 import 'package:scholar_clone/presentation/students/portfolio/portfolio_controller.dart';
 import 'package:scholar_clone/presentation/students/test_qna/test_qna_controller.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 class PortfolioScreen extends StatelessWidget {
@@ -107,6 +108,7 @@ class PortfolioScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+          bottomNavigationBar: const BottomInsetSpacer(),
         ),
       ),
     );

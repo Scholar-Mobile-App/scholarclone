@@ -7,6 +7,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 import '../../../model/teacher/students_leaves_approve_model.dart';
@@ -233,6 +234,7 @@ class AdminApproveStudentLeaveScreen extends StatelessWidget {
                       )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

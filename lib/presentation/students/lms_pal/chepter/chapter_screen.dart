@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/app_color.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 import 'chapter_controller.dart';
@@ -104,6 +105,7 @@ class ChapterScreen extends StatelessWidget {
                         ),
             ),
           ],
-        ));
+        ),
+        bottomNavigationBar: const BottomInsetSpacer());
   }
 }

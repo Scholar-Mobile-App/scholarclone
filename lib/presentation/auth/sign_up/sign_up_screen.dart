@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/app_color.dart';
 import 'package:scholar_clone/presentation/auth/sign_up/sign_up_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class SignUpSreen extends StatelessWidget {
   SignUpSreen({super.key});
@@ -81,6 +82,7 @@ class SignUpSreen extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

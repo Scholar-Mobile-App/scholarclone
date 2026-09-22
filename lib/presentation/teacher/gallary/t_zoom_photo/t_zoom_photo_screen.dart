@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/teacher/gallary/t_zoom_photo/t_zoom_photo_controller.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../widgets/download_manager.dart';
@@ -99,6 +100,7 @@ class TeacherZoomPhotoScreen extends StatelessWidget {
           ).toList(),
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

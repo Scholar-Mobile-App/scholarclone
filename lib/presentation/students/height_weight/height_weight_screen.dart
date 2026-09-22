@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/height_weight/height_weight_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class HeightWeightScreen extends StatelessWidget {
   HeightWeightScreen({super.key});
@@ -65,6 +66,7 @@ class HeightWeightScreen extends StatelessWidget {
                       );
                     },
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

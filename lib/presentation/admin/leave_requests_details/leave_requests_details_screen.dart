@@ -5,6 +5,7 @@ import 'package:scholar_clone/presentation/admin/leave_requests_details/leave_re
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class LeaveRequestsDetailsScreen extends StatelessWidget {
   LeaveRequestsDetailsScreen({super.key});
@@ -117,6 +118,7 @@ class LeaveRequestsDetailsScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

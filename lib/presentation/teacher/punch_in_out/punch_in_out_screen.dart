@@ -11,6 +11,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/teacher/punch_in_out/a.dart';
 import 'package:scholar_clone/presentation/teacher/punch_in_out/punch_in_out_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class PunchInOutScreen extends StatelessWidget {
   PunchInOutScreen({super.key});
@@ -168,6 +169,7 @@ class PunchInOutScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/teacher/reply_parent_communication/reply_parent_communication_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class ReplyParentCommunicationScreen extends StatelessWidget {
   ReplyParentCommunicationScreen({super.key});
@@ -218,6 +219,7 @@ class ReplyParentCommunicationScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

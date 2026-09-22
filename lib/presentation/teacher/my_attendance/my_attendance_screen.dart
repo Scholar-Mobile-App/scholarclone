@@ -9,6 +9,7 @@ import 'package:scholar_clone/model/teacher/attendances_model.dart';
 import 'package:scholar_clone/presentation/teacher/my_attendance/my_attendance_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class MyAttendanceScreen extends StatelessWidget {
   MyAttendanceScreen({super.key});
@@ -141,6 +142,7 @@ class MyAttendanceScreen extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        ),
+        bottomNavigationBar: const BottomInsetSpacer());
   }
 }

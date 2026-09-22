@@ -12,6 +12,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/core/utils/utility.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 import '../../../core/utils/cs.dart';
 import 'student_face_attendance_controller.dart';
@@ -200,6 +201,7 @@ class StudentFaceAttendanceScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

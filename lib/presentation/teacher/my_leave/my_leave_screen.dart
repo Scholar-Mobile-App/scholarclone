@@ -7,6 +7,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/teacher/my_leave/my_leave_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class MyLeaveScreen extends StatelessWidget {
@@ -272,6 +273,7 @@ class MyLeaveScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

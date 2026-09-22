@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/results_pdf/results_pdf_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 class ResultsPDFScreen extends StatelessWidget {
@@ -163,6 +164,7 @@ class ResultsPDFScreen extends StatelessWidget {
                       );
                     },
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

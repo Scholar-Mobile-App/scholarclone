@@ -6,6 +6,7 @@ import 'package:scholar_clone/model/teacher/assign_homework/studen_list_model.da
 import 'package:scholar_clone/presentation/teacher/assign_homework/assign_homework_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class AssignHomeWorkScreen extends StatelessWidget {
   AssignHomeWorkScreen({super.key});
@@ -90,6 +91,7 @@ class AssignHomeWorkScreen extends StatelessWidget {
             ),
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

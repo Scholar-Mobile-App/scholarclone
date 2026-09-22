@@ -5,6 +5,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/photos_gallery/photos_gallery_controler.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class PhotoGalleryScreen extends StatelessWidget {
@@ -75,6 +76,7 @@ class PhotoGalleryScreen extends StatelessWidget {
                       );
                     },
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

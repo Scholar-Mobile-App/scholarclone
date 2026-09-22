@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:get/get.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class OnlineReceiptView extends StatelessWidget {
   const OnlineReceiptView({super.key});
@@ -17,6 +18,7 @@ class OnlineReceiptView extends StatelessWidget {
           Get.arguments,
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

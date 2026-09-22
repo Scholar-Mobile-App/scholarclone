@@ -13,6 +13,7 @@ import 'package:scholar_clone/core/utils/local_storage.dart';
 import 'package:scholar_clone/model/student/home_data_model.dart';
 import 'package:scholar_clone/presentation/students/home/home_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 import 'package:scholar_clone/service/notification_service/helper.dart';
 
@@ -537,6 +538,7 @@ class HomeScreen extends StatelessWidget {
           )
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

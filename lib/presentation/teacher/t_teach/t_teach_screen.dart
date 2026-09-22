@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/model/teacher/teach_model.dart';
 import 'package:scholar_clone/presentation/teacher/t_teach/t_teach_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class TeachScreen extends StatelessWidget {
@@ -55,6 +56,7 @@ class TeachScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

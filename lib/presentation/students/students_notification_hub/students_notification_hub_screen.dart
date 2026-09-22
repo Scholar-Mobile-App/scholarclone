@@ -8,6 +8,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/core/utils/local_storage.dart';
 import 'package:scholar_clone/presentation/students/students_notification_hub/students_notification_hub_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/presentation/widgets/download_manager.dart';
 
 class StudentNotificationHubScreen extends StatelessWidget {
@@ -185,6 +186,7 @@ class StudentNotificationHubScreen extends StatelessWidget {
                     },
                   ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

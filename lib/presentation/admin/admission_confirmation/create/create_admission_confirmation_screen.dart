@@ -6,6 +6,7 @@ import 'package:scholar_clone/presentation/widgets/app_bar.dart';
 import 'package:scholar_clone/presentation/widgets/app_button.dart';
 import 'package:scholar_clone/presentation/widgets/app_drop_down.dart';
 import 'package:scholar_clone/presentation/widgets/app_text_field.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class CreateAdmissionConfirmationScreen extends StatelessWidget {
   CreateAdmissionConfirmationScreen({super.key});
@@ -251,6 +252,7 @@ class CreateAdmissionConfirmationScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }

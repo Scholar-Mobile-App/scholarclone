@@ -8,6 +8,7 @@ import '../../../core/utils/cu.dart';
 import 'teacher_visitor_controller.dart';
 
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:scholar_clone/routes/app_routes.dart';
 
 class TeacherVisitorScreen extends StatelessWidget {
@@ -327,6 +328,7 @@ class TeacherVisitorScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 

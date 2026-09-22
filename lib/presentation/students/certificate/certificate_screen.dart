@@ -6,6 +6,7 @@ import 'package:scholar_clone/core/utils/cu.dart';
 import 'package:scholar_clone/presentation/students/certificate/certificate_controller.dart';
 import 'package:scholar_clone/presentation/students/certificate/certificate_view/certificate_view_screen.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 
 class CertificateScreen extends StatelessWidget {
   CertificateScreen({super.key});
@@ -61,6 +62,7 @@ class CertificateScreen extends StatelessWidget {
                       );
                     },
                   ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

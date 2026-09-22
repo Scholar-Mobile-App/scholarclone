@@ -9,6 +9,7 @@ import 'package:scholar_clone/core/utils/constant_sizebox.dart';
 import 'package:scholar_clone/presentation/students/academic_calendar/academic_calendar_controller.dart';
 import 'package:scholar_clone/presentation/students/student_attendance/student_attendance_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../core/utils/cs.dart';
@@ -291,6 +292,7 @@ class AcademicCalendarScreen extends StatelessWidget {
             )
           ],
         ),
+        bottomNavigationBar: const BottomInsetSpacer(),
       ),
     );
   }

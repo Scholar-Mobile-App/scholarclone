@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scholar_clone/presentation/students/web_view/web_view_controller.dart';
 import 'package:scholar_clone/presentation/widgets/app_bar.dart';
+import 'package:scholar_clone/presentation/widgets/bottom_inset_spacer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../core/utils/cs.dart';
@@ -28,6 +29,7 @@ class WebViewScreen extends StatelessWidget {
             ),
           ),
       ),
+      bottomNavigationBar: const BottomInsetSpacer(),
     );
   }
 }
