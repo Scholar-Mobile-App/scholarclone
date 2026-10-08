@@ -56,13 +56,12 @@ class StudentUserListScreen extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 children: [
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      final homeData = await _controller.ensureHomeData();
+                      if (homeData == null) return;
                       Get.offNamed(
                         AppRoutes.studentMain,
-                        arguments: [
-                          _controller.userInfo[index],
-                          _controller.homeData
-                        ],
+                        arguments: [_controller.userInfo[index], homeData],
                       );
                     },
                     child: Container(

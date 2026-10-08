@@ -16,7 +16,7 @@ import 'package:scholar_clone/model/student/home_data_model.dart';
 class StudentUserListController extends GetxController {
   @override
   void onInit() {
-    callService();
+    homeDataFuture = callService();
     userInfo = LocalStorage.studentList;
 
     log("UserINFO $userInfo");
@@ -27,6 +27,18 @@ class StudentUserListController extends GetxController {
   Map<String, dynamic> resJson = {};
   List<dynamic> userInfo = [];
   HomeDataModel? homeData;
+  Future<void>? homeDataFuture;
+
+  /// Waits for the home data to load (retrying once if it failed) so the
+  /// student main screen is never opened with null data.
+  Future<HomeDataModel?> ensureHomeData() async {
+    if (homeData == null) await homeDataFuture;
+    if (homeData == null) {
+      homeDataFuture = callService();
+      await homeDataFuture;
+    }
+    return homeData;
+  }
 
   Future<void> callService() async {
     Map<String, dynamic> body = <String, dynamic>{

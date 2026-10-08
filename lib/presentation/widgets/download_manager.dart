@@ -13,6 +13,30 @@ import 'package:sn_progress_dialog/sn_progress_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/utils/cu.dart';
+import 'image_viewer_screen.dart';
+
+const _imageExtensions = [
+  'jpg',
+  'jpeg',
+  'png',
+  'gif',
+  'webp',
+  'bmp',
+  'heic',
+  'heif',
+];
+
+// Opened through the system (browser / installed viewer) without downloading.
+const _externalViewExtensions = [
+  'pdf',
+  'doc',
+  'docx',
+  'xls',
+  'xlsx',
+  'ppt',
+  'pptx',
+  'txt',
+];
 
 Future<void> launchURL(String url) async {
   await launchUrl(
@@ -27,6 +51,21 @@ Future<String> downloadExport({
   required String filename,
   bool open = true,
 }) async {
+  // Strip query/fragment so URLs like "file.png?v=1" still resolve correctly.
+  final cleanUrl = fileUrl.split('?').first.split('#').first.trim();
+  final ext = cleanUrl.contains('.') ? cleanUrl.split('.').last.toLowerCase() : '';
+
+  if (open) {
+    if (_imageExtensions.contains(ext)) {
+      await Get.to(() => ImageViewerScreen(imageUrl: fileUrl.trim()));
+      return "";
+    }
+    if (_externalViewExtensions.contains(ext)) {
+      await launchURL(fileUrl.trim());
+      return "";
+    }
+  }
+
   bool isStoragePermission = true;
   bool useAppDir = false;
 
