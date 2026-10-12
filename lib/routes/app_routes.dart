@@ -14,6 +14,7 @@ import 'package:scholar_clone/presentation/admin/assign_homework/admin_assign_ho
 import 'package:scholar_clone/presentation/admin/capture_photos/admin_capture_photos_screen.dart';
 import 'package:scholar_clone/presentation/admin/email_parent/admin_send_email_screen.dart';
 import 'package:scholar_clone/presentation/admin/fees_collect/fees_collect_screen.dart';
+import 'package:scholar_clone/presentation/admin/mis_report/mis_report_screen.dart';
 import 'package:scholar_clone/presentation/admin/fees_collect/fees_details/fees_collect_details_screen.dart';
 import 'package:scholar_clone/presentation/admin/fees_collect/fees_details/online_receipt_view.dart';
 import 'package:scholar_clone/presentation/admin/inward/add_inward/add_admin_inward_screen.dart';
@@ -277,6 +278,7 @@ class AppRoutes {
   static const String chapter = "/chapter";
   static const String feesCollect = "/feesCollect";
   static const String feesCollectDetails = "/feesCollectDetails";
+  static const String misReport = "/misReport";
   static const String onlineReceptView = "/onlineReceptView";
   static const String myLeave = "/my_leave";
   static const String leaveHistory = "/leave_history";
@@ -452,6 +454,7 @@ class AppRoutes {
     GetPage(name: chapter, page: () => ChapterScreen()),
     GetPage(name: feesCollect, page: () => FeesCollectScreen()),
     GetPage(name: feesCollectDetails, page: () => FeesCollectDetailsScreen()),
+    GetPage(name: misReport, page: () => MisReportScreen()),
     GetPage(name: onlineReceptView, page: () => const OnlineReceiptView()),
     GetPage(name: myLeave, page: () => MyLeaveScreen()),
     GetPage(name: leaveHistory, page: () => LeaveHistoryScreen()),

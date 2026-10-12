@@ -551,6 +551,13 @@ onScreenNavigation({
       );
       break;
 
+    case "t_mis_report":
+      Get.toNamed(
+        AppRoutes.misReport,
+        arguments: [data, controller!.userInfo],
+      );
+      break;
+
     case "t_wrt_progress":
       Get.toNamed(
         AppRoutes.tWRTProgress,

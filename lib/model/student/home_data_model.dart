@@ -53,7 +53,10 @@ class HomeData {
         mainTitle: json["main_title"],
         menuType: json["menu_type"],
         mainItleColor: json["main_itle_color"],
-        mainTitleBackgroundImage: json["main_title_background_image"],
+        // Server redirects http -> https with a malformed Location
+        // ("https://erp.triz.co.instorage"), so request https directly.
+        mainTitleBackgroundImage: (json["main_title_background_image"] as String?)
+            ?.replaceFirst(RegExp(r'^http://'), 'https://'),
         contents: json["contents"] == null
             ? []
             : List<Content>.from(
